@@ -1,0 +1,974 @@
+/* ============ DEĞİŞKENLER ============ */
+:root {
+    --dark-bg: #110e0d;
+    --dark-surface: #1a1614;
+    --dark-text: #d4c5b0;
+    --dark-border: #3a352d;
+
+    --paper-bg: #e6d7c3;
+    --paper-text: #2c2825;
+    --paper-border: #b8a994;
+
+    --amber: #b45309;
+    --wood: #2c241d;
+    --muted: #9c8b78;
+}
+
+/* ============ TEMEL ============ */
+body {
+    font-family: 'Space Mono', monospace;
+    background-color: var(--dark-bg);
+    background-image: url('dark.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--dark-text);
+    margin: 0;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .serif {
+    font-family: 'Playfair Display', serif;
+}
+
+a { color: inherit; }
+
+/* Görünür odak halkası (klavye ile gezenler için) */
+:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+}
+
+/* ============ ARKA PLANLAR ============ */
+.bg-room {
+    background-image:
+        linear-gradient(rgba(17, 14, 13, 0.7), rgba(26, 22, 20, 0.9)),
+        url('hakkimda.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.dark-texture {
+    background-color: transparent;
+    background-image: linear-gradient(rgba(17, 14, 13, 0.2), rgba(26, 22, 20, 0.5));
+}
+
+.paper-texture {
+    background-color: var(--paper-bg);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+    color: var(--paper-text);
+}
+
+.paper-card {
+    background-color: var(--paper-bg);
+    background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+    color: var(--paper-text);
+}
+
+/* ============ KENARLIKLAR ============ */
+.sidebar {
+    background-color: rgba(17, 14, 13, 0.85);
+    backdrop-filter: blur(8px);
+    border-color: var(--dark-border);
+}
+.head-line, .home-foot { border-color: var(--dark-border); }
+.paper-line { border-color: var(--paper-border); }
+.home-foot { opacity: 0.55; }
+
+.quote-box {
+    border-color: var(--dark-border);
+    opacity: 0.85;
+}
+
+/* Yanıp sönen imleç */
+.cursor { animation: blink 1s steps(2, start) infinite; }
+@keyframes blink { to { visibility: hidden; } }
+
+/* ============ MENÜ ============ */
+.nav-link {
+    transition: all 0.3s ease;
+    position: relative;
+}
+.nav-link::before {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 0;
+    background-color: var(--dark-text);
+    transition: height 0.3s ease;
+}
+.nav-link:hover, .nav-link.active { color: #fff; }
+.nav-link:hover::before, .nav-link.active::before { height: 100%; }
+
+/* ============ TERMİNAL ============ */
+.terminal {
+    background-color: #0f0c0b;
+    border-color: var(--dark-border);
+    color: var(--dark-text);
+    font-family: 'Space Mono', monospace;
+}
+.terminal-bar {
+    background-color: #1a1614;
+    border-color: var(--dark-border);
+}
+
+/* ============ ZAMAN ÇİZGİSİ ============ */
+.timeline { border-color: var(--dark-border); }
+.dot {
+    position: absolute;
+    left: -6px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    background-color: rgba(180, 83, 9, 0.85);
+}
+
+/* ============ BLOG ============ */
+.vintage-img {
+    filter: grayscale(100%) sepia(50%) contrast(120%) blur(0);
+    transition: all 0.6s ease;
+}
+.post-card:hover .vintage-img {
+    filter: grayscale(10%) sepia(10%) contrast(100%) blur(0);
+    transform: scale(1.02);
+}
+.focus-text {
+    filter: blur(0);
+    opacity: 1;
+    transition: all 0.5s ease;
+}
+.post-card:hover .focus-text,
+.post-card:focus-within .focus-text {
+    filter: blur(0);
+    opacity: 1;
+}
+
+@media (hover: none) {
+    .vintage-img { filter: grayscale(30%) sepia(30%); }
+    .focus-text { filter: none; opacity: 1; }
+}
+
+/* ============ HOBİ RAFI ============ */
+.bookcase {
+    background-color: var(--dark-surface);
+    border: 12px solid var(--wood);
+    border-radius: 4px;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.8), inset 0 0 50px rgba(0,0,0,0.9);
+    padding: 10px 10px 0 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.shelf {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    border-bottom: 10px solid var(--wood);
+    padding: 20px 0 10px;
+    position: relative;
+}
+.shelf:last-child { border-bottom: 0; }
+
+.shelf::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
+    z-index: 1;
+    pointer-events: none;
+}
+
+.shelf-item {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+.shelf-item:hover,
+.shelf-item:focus {
+    background-color: rgba(230, 215, 195, 0.05);
+    border-color: rgba(230, 215, 195, 0.3);
+    box-shadow: 0 0 20px rgba(230, 215, 195, 0.1), inset 0 0 15px rgba(230, 215, 195, 0.05);
+}
+.shelf-item i {
+    font-size: 3.5rem;
+    color: var(--muted);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.shelf-item:hover i,
+.shelf-item:focus i {
+    transform: translateY(-5px);
+    color: var(--paper-bg);
+}
+.shelf-item span {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    color: var(--muted);
+    text-align: center;
+}
+.shelf-item:hover span,
+.shelf-item:focus span { color: var(--paper-bg); }
+
+.hobby-tip {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 8px;
+    width: 11rem;
+    padding: 12px;
+    background-color: #120c0a;
+    border: 1px solid #3a2c22;
+    border-radius: 4px;
+    color: #e6dac6;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 20;
+}
+.shelf-item:hover .hobby-tip,
+.shelf-item:focus .hobby-tip { opacity: 1; }
+
+@media (max-width: 480px) {
+    .shelf-item { padding: 10px 8px; }
+    .shelf-item i { font-size: 2.6rem; }
+    .hobby-tip { width: 9.5rem; }
+}
+
+/* ============ PORTFOLYO (GÖRSELDEKİ ÖZEL TASARIM STİLLERİ) ============ */
+.portfolio-left {
+    background-color: #15110f;
+    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 0);
+    background-size: 16px 16px;
+    border-color: var(--dark-border);
+}
+
+.paperclip-btn {
+    background-color: #d8c8b0;
+    background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+    color: var(--paper-text);
+    border: 1px solid #9c8b78;
+    padding: 10px 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 3px 4px 0px #2c241d, 0 6px 15px rgba(0,0,0,0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.paperclip-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 4px 6px 0px #2c241d, 0 8px 20px rgba(0,0,0,0.6);
+}
+
+.portfolio-timeline {
+    border-color: #b45309;
+}
+.portfolio-dot {
+    position: absolute;
+    left: -7px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 9999px;
+    background-color: #b45309;
+    border: 2px solid var(--paper-bg);
+}
+
+/* Katalog Fişi (Proje Kartları) */
+.catalog-card {
+    background-color: #dfd0ba;
+    background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+    border: 1px solid #b8a994;
+    border-radius: 4px;
+    padding: 14px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.catalog-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.14);
+}
+.catalog-card summary::-webkit-details-marker {
+    display: none;
+}
+
+.catalog-stamp {
+    border: 1.5px solid #6b3423;
+    color: #6b3423;
+    padding: 1px 6px;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transform: rotate(-3deg);
+    background-color: rgba(230, 215, 195, 0.6);
+}
+
+.catalog-pill {
+    background-color: rgba(44, 40, 37, 0.08);
+    border: 1px solid #a3937e;
+    border-radius: 9999px;
+    padding: 1px 7px;
+    font-size: 0.65rem;
+}
+
+.skill-badge {
+    background-color: #d6c5ad;
+    border: 1px solid #a3937e;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 0.72rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+/* Sağ Alt Mühürlü İletişim Butonu */
+.seal-cta {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background-color: #d8c8b0;
+    background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+    color: var(--paper-text);
+    border: 1px solid #9c8b78;
+    border-radius: 6px;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    z-index: 40;
+    transition: transform 0.2s ease;
+}
+.seal-cta:hover {
+    transform: scale(1.03);
+}
+.wax-seal {
+    width: 34px;
+    height: 34px;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 30% 30%, #8c2d19, #54160a);
+    color: #f3e5d0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.6), 0 2px 5px rgba(0,0,0,0.4);
+    border: 2px dashed rgba(243, 229, 208, 0.35);
+}
+
+/* ============ ANİMASYON ============ */
+.fade-in { animation: fadeIn 0.6s ease-in forwards; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}
+
+/* ============ YAZDIRMA (CV MODU) ============ */
+@media print {
+    body {
+        background: #fff !important;
+        color: #000 !important;
+        font-size: 11pt;
+    }
+    .sidebar, .no-print { display: none !important; }
+    main { margin: 0 !important; width: 100% !important; }
+    .portfolio-left, .portfolio-right, .catalog-card, .paper-texture {
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+    }
+    .portfolio-left {
+        border-bottom: 2px solid #000 !important;
+        width: 100% !important;
+    }
+    h2, h3, h4, .text-white { color: #000 !important; }
+    .catalog-card { break-inside: avoid; border: 1px solid #999 !important; }
+    a { text-decoration: none; }
+}
+
+/* ============ TAM EKRAN AÇIK KİTAP OKUYUCU ============ */
+body.reader-open { overflow: hidden; }
+
+/* Okuyucu açıkken menüyü ve arkadaki sayfayı tamamen gizle */
+body.reader-open aside.sidebar,
+body.reader-open main { display: none !important; }
+
+.parchment-fullscreen {
+    --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.10'/%3E%3C/svg%3E");
+
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 72px 16px 24px;
+    overflow: hidden;
+    color: #2c241d;
+    background-color: #e6d7c3;
+    background-image:
+        radial-gradient(ellipse at center, rgba(0,0,0,0) 50%, rgba(107, 62, 35, 0.38) 100%),
+        url('https://www.transparenttextures.com/patterns/aged-paper.png');
+    box-shadow: inset 0 0 90px rgba(70, 40, 20, 0.35);
+    animation: parchmentOpen 0.4s ease;
+}
+.parchment-fullscreen[hidden] { display: none !important; }
+@keyframes parchmentOpen { from { opacity: 0; } to { opacity: 1; } }
+
+/* Üst butonlar */
+.parchment-topbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+.parchment-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #5c3a21;
+    background: transparent;
+    border: 1px solid #8b6b4f;
+    padding: 8px 16px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.parchment-back-btn:hover { background: #5c3a21; color: #e6d7c3; }
+
+.parchment-icon-btn {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #8b6b4f;
+    color: #5c3a21;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+}
+.parchment-icon-btn:hover { background: #5c3a21; color: #e6d7c3; }
+
+/* Kitap ve yan oklar */
+.book-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    width: 100%;
+}
+.book-arrow {
+    flex: none;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #8b6b4f;
+    border-radius: 50%;
+    background: rgba(230, 215, 195, 0.6);
+    color: #5c3a21;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.book-arrow:hover { background: #5c3a21; color: #e6d7c3; }
+.book-arrow[disabled] { opacity: 0.25; cursor: default; pointer-events: none; }
+
+/* Kitabın boyutu: sayfalar yatay ekranı dolduracak oranda (1,6 : 1) */
+.book {
+    position: relative;
+    flex: none;
+    height: min(calc(100vh - 110px), calc((100vw - 170px) / 1.6));
+    height: min(calc(100dvh - 110px), calc((100vw - 170px) / 1.6));
+    aspect-ratio: 1.6 / 1;
+}
+
+/* Deri kapak */
+.book-cover {
+    position: absolute;
+    inset: -16px -20px;
+    border-radius: 10px;
+    background-color: #2e1a0f;
+    background-image:
+        var(--noise),
+        linear-gradient(145deg, #4a2e1c, #2e1a0f 60%, #241409);
+    box-shadow:
+        0 35px 70px rgba(50, 25, 10, 0.55),
+        0 8px 18px rgba(50, 25, 10, 0.4),
+        inset 0 0 0 1px rgba(255, 220, 170, 0.10),
+        inset 0 0 40px rgba(0, 0, 0, 0.45);
+}
+.book-cover::after {
+    content: '';
+    position: absolute;
+    inset: 7px;
+    border: 1px dashed rgba(230, 190, 140, 0.30);
+    border-radius: 6px;
+}
+
+.book-pages {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    perspective: 2600px;
+}
+
+/* Sayfa kenarlarındaki kâğıt yığını */
+.book-pages::before,
+.book-pages::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    bottom: -5px;
+    width: 9px;
+    background: repeating-linear-gradient(to right, #bfae90 0 1px, #e2d3b8 1px 3px);
+}
+.book-pages::before { left: -9px; border-radius: 3px 0 0 3px; }
+.book-pages::after  { right: -9px; border-radius: 0 3px 3px 0; transform: scaleX(-1); }
+
+/* Sayfa yüzeyi */
+.pg-face {
+    container-type: inline-size;
+    overflow: hidden;
+    background-color: #eadcc4;
+    background-image: var(--noise);
+}
+.pg { position: relative; flex: 1; min-width: 0; }
+.pg-left  { border-radius: 6px 0 0 6px; }
+.pg-right { border-radius: 0 6px 6px 0; transition: opacity 0.2s ease, transform 0.2s ease; }
+.pg-right.out { opacity: 0; transform: translateY(6px); }
+
+/* Cilde yakın kısımda hafif gölge */
+.pg-left,
+.leaf.fwd .leaf-back,
+.leaf.back .leaf-front {
+    background-image: linear-gradient(to left, rgba(80, 50, 20, 0.24), rgba(80, 50, 20, 0) 16%), var(--noise);
+}
+.pg-right,
+.leaf.fwd .leaf-front,
+.leaf.back .leaf-back {
+    background-image: linear-gradient(to right, rgba(80, 50, 20, 0.24), rgba(80, 50, 20, 0) 16%), var(--noise);
+}
+
+/* Cilt oluğu */
+.spine {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 9%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 4;
+    background: linear-gradient(to right,
+        rgba(60, 35, 15, 0),
+        rgba(60, 35, 15, 0.22) 38%,
+        rgba(30, 16, 8, 0.55) 50%,
+        rgba(60, 35, 15, 0.22) 62%,
+        rgba(60, 35, 15, 0));
+}
+
+/* Çevrilen yaprak */
+.leaf {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    z-index: 3;
+    transform-style: preserve-3d;
+}
+.leaf[hidden] { display: none; }
+.leaf.fwd  { left: 50%; transform-origin: left center;  animation: flipFwd  0.8s cubic-bezier(0.45, 0.05, 0.25, 1) forwards; }
+.leaf.back { left: 0;   transform-origin: right center; animation: flipBack 0.8s cubic-bezier(0.45, 0.05, 0.25, 1) forwards; }
+.leaf-face { position: absolute; inset: 0; backface-visibility: hidden; }
+.leaf-back { transform: rotateY(180deg); }
+
+@keyframes flipFwd  { from { transform: rotateY(0deg); } to { transform: rotateY(-180deg); } }
+@keyframes flipBack { from { transform: rotateY(0deg); } to { transform: rotateY(180deg); } }
+
+/* Sayfa içeriği (ölçüler sayfa genişliğine göre) */
+.pg-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 6.5cqw 9cqw 9.5cqw;
+}
+
+.bp-date {
+    margin: 0 0 0.8em;
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(10px, 1.6cqw, 14px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #6b3423;
+    text-align: center;
+}
+.bp-title {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 5.4cqw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #231c16;
+    text-align: center;
+}
+.bp-orn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 3.5cqw 0 4.5cqw;
+    color: #6b3423;
+    font-size: 1.25rem;
+}
+.bp-orn span { width: 80px; height: 1px; background: #6b3423; opacity: 0.45; }
+
+.bp-running {
+    margin: 0 0 3cqw;
+    padding-bottom: 0.7em;
+    border-bottom: 1px solid rgba(107, 52, 35, 0.25);
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(10px, 1.5cqw, 13px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b3423;
+    opacity: 0.75;
+}
+
+.bp-body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: clamp(14px, 2.6cqw, 22px);
+    line-height: 1.7;
+    color: #2c241d;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.bp-body::-webkit-scrollbar { display: none; }
+
+.bp-body p { margin: 0 0 1.1em; text-align: justify; hyphens: auto; }
+.bp-body code {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85em;
+    background: rgba(107, 52, 35, 0.12);
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+.bp-body.dropcap p:first-of-type::first-letter {
+    float: left;
+    font-family: 'Playfair Display', serif;
+    font-size: 4.2em;
+    font-weight: 700;
+    line-height: 0.82;
+    padding: 0.06em 0.14em 0 0;
+    color: #7a2e18;
+}
+
+.pg-num {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 3.8cqw;
+    margin: 0;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(10px, 1.6cqw, 14px);
+    color: #6b3423;
+    opacity: 0.65;
+}
+
+/* Boş sayfa (süslü) */
+.pg-empty {
+    align-items: center;
+    justify-content: center;
+    color: #6b3423;
+    opacity: 0.35;
+}
+.pg-empty i { font-size: 7cqw; }
+.pg-empty p {
+    margin: 1em 0 0;
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(10px, 1.6cqw, 14px);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+}
+
+/* Yazı sonu */
+.bp-end {
+    margin-top: 1.5cqw;
+    padding-top: 2.5cqw;
+    border-top: 1px dashed rgba(107, 52, 35, 0.35);
+    text-align: center;
+}
+.bp-fin {
+    margin: 0 0 1.5cqw;
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(10px, 1.6cqw, 14px);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #6b3423;
+    opacity: 0.8;
+}
+.bp-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.bp-btn {
+    min-height: 44px;
+    padding: 0 20px;
+    border: 1px solid #5c3a21;
+    background: transparent;
+    color: #5c3a21;
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(10px, 1.6cqw, 13px);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.bp-btn:hover { background: #5c3a21; color: #e6d7c3; }
+
+/* Telefon ve dar ekran: tek sayfa */
+@media (max-width: 899px) {
+    .parchment-fullscreen { padding: 64px 12px 14px; }
+    .book {
+        width: min(94vw, 620px);
+        height: calc(100vh - 92px);
+        height: calc(100dvh - 92px);
+        aspect-ratio: auto;
+    }
+    .book-arrow { display: none; }
+    .pg-left, .spine, .leaf { display: none; }
+    .pg-right { border-radius: 6px; }
+    .book-pages::before { display: none; }
+    .book-cover { inset: -10px; }
+    .pg-inner { padding: 8cqw 9cqw 12cqw; }
+    .bp-body { font-size: clamp(16px, 4.4cqw, 20px); }
+    .bp-title { font-size: clamp(24px, 8cqw, 40px); }
+    .bp-date, .bp-running, .pg-num, .bp-fin { font-size: 11px; }
+}
+
+@media print { .parchment-fullscreen { display: none !important; } }
+
+
+/* ============ PARŞÖMEN 3D SAYFA ÇEVİRME ANİMASYONU ============ */
+.parchment-fullscreen {
+    perspective: 2200px; /* 3D derinlik hissi verir */
+    overflow-x: hidden;
+}
+
+.parchment-article {
+    transform-origin: left center; /* Sayfanın sol kenardan tutulup çevrilmesini sağlar */
+    backface-visibility: hidden;
+    will-change: transform, opacity, filter;
+}
+
+/* İleri çevrilirken (Mevcut sayfa sola doğru kapanır) */
+.parchment-article.flip-next-out {
+    animation: flipNextOut 0.45s cubic-bezier(0.55, 0.05, 0.67, 0.19) forwards;
+}
+
+/* İleri çevrilirken (Yeni sayfa sağdan açılır) */
+.parchment-article.flip-next-in {
+    animation: flipNextIn 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+/* Geri çevrilirken (Mevcut sayfa sağa doğru kapanır) */
+.parchment-article.flip-prev-out {
+    animation: flipPrevOut 0.45s cubic-bezier(0.55, 0.05, 0.67, 0.19) forwards;
+}
+
+/* Geri çevrilirken (Önceki sayfa soldan açılır) */
+.parchment-article.flip-prev-in {
+    animation: flipPrevIn 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes flipNextOut {
+    0% {
+        transform: rotateY(0deg) scale(1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+    100% {
+        transform: rotateY(-88deg) scale(0.96) skewY(3deg);
+        filter: brightness(0.45); /* Sayfa dönerken gölgede kalır */
+        opacity: 0;
+    }
+}
+
+@keyframes flipNextIn {
+    0% {
+        transform: rotateY(75deg) scale(0.96) skewY(-3deg);
+        filter: brightness(0.55);
+        opacity: 0;
+    }
+    100% {
+        transform: rotateY(0deg) scale(1) skewY(0deg);
+        filter: brightness(1);
+        opacity: 1;
+    }
+}
+
+@keyframes flipPrevOut {
+    0% {
+        transform: rotateY(0deg) scale(1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+    100% {
+        transform: rotateY(75deg) scale(0.96) skewY(-3deg);
+        filter: brightness(0.45);
+        opacity: 0;
+    }
+}
+
+@keyframes flipPrevIn {
+    0% {
+        transform: rotateY(-88deg) scale(0.96) skewY(3deg);
+        filter: brightness(0.55);
+        opacity: 0;
+    }
+    100% {
+        transform: rotateY(0deg) scale(1) skewY(0deg);
+        filter: brightness(1);
+        opacity: 1;
+    }
+}
+
+/* ============ ESKİTİLMİŞ DİKDÖRTGEN PLAKA KARTLAR (İLETİŞİM) ============ */
+.vintage-plaque {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 390px; /* Dikdörtgen oranını korur */
+    min-height: 145px;
+    padding: 14px;
+    border-radius: 7px;
+    text-decoration: none;
+    overflow: hidden;
+    
+    /* Görseldeki gibi sol tarafı kararmış, sağa doğru açılan kirli/taş parşömen dokusu */
+    background-color: #cbbba4;
+    background-image: 
+        linear-gradient(100deg, rgba(28, 22, 18, 0.72) 0%, rgba(55, 44, 35, 0.35) 38%, rgba(235, 225, 208, 0.25) 75%, rgba(65, 50, 38, 0.4) 100%),
+        radial-gradient(ellipse at center, transparent 45%, rgba(20, 15, 10, 0.55) 100%),
+        url('https://www.transparenttextures.com/patterns/concrete-wall.png'),
+        url('https://www.transparenttextures.com/patterns/old-wall.png');
+    background-blend-mode: multiply, normal, multiply, overlay;
+    
+    /* Kalın, 3 boyutlu eskitilmiş kenar gölgesi */
+    border: 1px solid #5a4b3c;
+    box-shadow: 
+        0 14px 28px rgba(0, 0, 0, 0.75),
+        inset 0 2px 3px rgba(255, 255, 255, 0.35),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.6),
+        inset 12px 0 25px rgba(0, 0, 0, 0.45);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+/* İçerideki kabartmalı (gölgeli) kesik dikiş izi çerçevesi */
+.vintage-plaque::before {
+    content: '';
+    position: absolute;
+    inset: 9px;
+    border: 2px dashed rgba(50, 38, 28, 0.55);
+    border-radius: 4px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.vintage-plaque:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.05);
+    box-shadow: 
+        0 18px 34px rgba(0, 0, 0, 0.85),
+        inset 0 2px 3px rgba(255, 255, 255, 0.4),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.6),
+        inset 8px 0 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Kart İçeriği */
+.plaque-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    /* Yazılara hafif metal/baskı gölgesi verir */
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Köşelerdeki Gömülü Çivi / Perçin Delikleri */
+.plaque-hole {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #4a3e35, #14100d 75%);
+    box-shadow: 
+        inset 0 1px 2px rgba(0, 0, 0, 0.9),
+        0 1px 1px rgba(255, 255, 255, 0.35);
+    z-index: 4;
+}
+
+.plaque-hole.tl { top: 14px; left: 14px; }
+.plaque-hole.tr { top: 14px; right: 14px; }
+.plaque-hole.bl { bottom: 14px; left: 14px; }
+.plaque-hole.br { bottom: 14px; right: 14px; }
+
+
+#reader-sound { display: none; }
+
+
+
+/* ============ MOBİL MENÜ (SIKIŞIK) ============ */
+@media (max-width: 767px) {
+    .sidebar { padding: 14px 16px !important; justify-content: flex-start !important; }
+    .sidebar h1 { font-size: 1.4rem !important; margin-bottom: 10px !important; }
+    .sidebar nav { flex-direction: row !important; flex-wrap: wrap; gap: 6px 16px; }
+    .sidebar nav > * { margin: 0 !important; }
+    .sidebar .nav-link { font-size: 0.8rem; padding: 4px 0; }
+    .sidebar .nav-link::before { display: none; }
+    .sidebar .nav-link.active { border-bottom: 1px solid var(--dark-text); }
+    .quote-box { display: none; }
+}

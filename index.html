@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dağınık  Oda: yapay zekâ, bilim ve merak üzerine kişisel defter ve portfolyo.">
+    <title>Dağınık Oda</title>
+    <link rel="icon" type="image/png" href="logo1.png">
+     
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- İkonlar -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Kendi Özel CSS Dosyamız -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="flex flex-col md:flex-row min-h-screen">
+    <!-- SOL SABİT MENÜ (SIDEBAR) -->
+    <aside class="sidebar w-full md:w-64 md:fixed md:h-screen border-b md:border-b-0 md:border-r z-50 flex flex-col justify-between p-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-12 tracking-wider text-white">Dağınık Oda</h1>
+            <nav class="flex flex-col space-y-4 text-sm" aria-label="Ana menü">
+                <button onclick="switchTab('home')" id="nav-home" class="nav-link active flex items-center gap-3 text-left opacity-80 hover:opacity-100">
+                    <i class="ph ph-house text-lg"></i> Anasayfa
+                </button>
+                <button onclick="switchTab('about')" id="nav-about" class="nav-link flex items-center gap-3 text-left opacity-80 hover:opacity-100">
+                    <i class="ph ph-user text-lg"></i> Hakkımda
+                </button>
+                <button onclick="switchTab('projects')" id="nav-projects" class="nav-link flex items-center gap-3 text-left opacity-80 hover:opacity-100">
+                    <i class="ph ph-briefcase text-lg"></i> Portfolyo
+                </button>
+                <button onclick="switchTab('blog')" id="nav-blog" class="nav-link flex items-center gap-3 text-left opacity-80 hover:opacity-100">
+                    <i class="ph ph-book-open text-lg"></i> Blog
+                </button>
+                <button onclick="switchTab('contact')" id="nav-contact" class="nav-link flex items-center gap-3 text-left opacity-80 hover:opacity-100">
+                    <i class="ph ph-envelope-simple text-lg"></i> İletişim
+                </button>
+            </nav>
+        </div>
+        <!-- Alt Alıntı Alanı (JS ile değişir) -->
+        <div id="quote-container" class="quote-box mt-12 md:mt-0 text-xs italic leading-relaxed border-l-2 pl-3 fade-in"></div>
+    </aside>
+    <!-- SAĞ ANA İÇERİK ALANI -->
+    <main class="w-full md:ml-64 md:w-[calc(100%-16rem)] min-h-screen relative flex-1">
+        <!-- GÖRÜNÜM 1: ANASAYFA -->
+        <section id="view-home" class="dark-texture min-h-screen flex flex-col justify-between p-8 md:p-16 fade-in">
+            <div class="max-w-2xl mt-12 md:mt-24">
+                <h2 class="serif text-5xl md:text-7xl font-bold mb-6 text-white leading-tight">
+                    Kafama<br><span class="italic font-light">göre.</span>
+                </h2>
+                <p class="text-sm md:text-base leading-relaxed opacity-90 mb-10 max-w-lg">
+                    Zihnim tek bir odada duramayacak kadar dağınık... Merakımı ne gıdıklıyorsa söküp içine bakıyor, anladığım kadarını da buraya saçıyorum.
+                </p>
+                <button onclick="switchTab('projects')" class="border border-current px-6 py-3 text-sm tracking-widest uppercase hover:bg-white hover:text-black transition-colors duration-300 flex items-center gap-2">
+                    Portfolyom <i class="ph ph-arrow-right"></i>
+                </button>
+            </div>
+            <div class="home-foot mt-24 border-t pt-8 text-xs tracking-widest uppercase">
+                &gt; <span class="cursor">_</span>
+            </div>
+        </section>
+        <!-- GÖRÜNÜM 2: HAKKIMDA -->
+        <section id="view-about" class="bg-room min-h-screen p-8 md:p-10 hidden fade-in flex flex-col justify-center">
+            <header class="head-line border-b pb-2 mb-6 flex justify-between items-end">
+                <h2 class="serif text-3xl font-bold text-white">Hakkımda (Kayıtlar)</h2>
+            </header>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl">
+                <!-- SOL SÜTUN -->
+                <div class="flex flex-col space-y-6">
+                    <!-- Terminal -->
+                    <div>
+                        <h3 class="serif text-lg mb-2 text-white">Terminal Kaydı</h3>
+                        <div class="terminal border rounded-md overflow-hidden text-xs shadow-xl">
+                            <div class="terminal-bar px-3 py-2 flex items-center gap-2 border-b">
+                                <div class="w-2.5 h-2.5 rounded-full bg-red-900"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-yellow-900"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-green-900"></div>
+                                <span class="ml-2 opacity-60">oda_os</span>
+                            </div>
+                            <div class="p-4 leading-relaxed space-y-3">
+                                <p><span class="text-amber-700 font-bold">&gt;</span> whoami</p>
+                                <p class="opacity-90">Merhaba ben Gövher. Dokuz Eylül Üniversitesi Bilgisayar Bilimleri mezunuyum. Yapay zekâ mühendisliği alanında çalışıyorum ve en çok araştırma kısmını seviyorum: bir problemi alıp neden böyle çalıştığını anlamaya çalışmak, çoğu zaman bir şeyi çalıştırmaktan daha çok heyecanlandırıyor beni.</p>
+                                <p class="opacity-90">Beni asıl çeken soru ise şu: zihin nasıl çalışır? Psikoloji bu sorunun insan tarafı, yapay zekâ ise makine tarafı. İkisini aynı masaya koymayı seviyorum. Kuantum bilgisayarlar, fizik ve bilim tarihi de aynı merakın farklı kapıları.</p>
+                                <p class="opacity-90">Bu site, o dağınık merakın düzene girmiş hâli. Burada ilgilendiğim alanlarda öğrendiklerimi yazıyorum, yaptığım projeleri paylaşıyorum. Her şeyi bildiğimi iddia etmiyorum; anladığım kadarını, anladığım şekilde anlatıyorum.</p>
+                                <p class="animate-pulse"><span class="text-amber-700 font-bold">&gt;</span> _</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Hobilerim (Raf) -->
+                    <div>
+                        <h3 class="serif text-lg mb-2 text-white">Hobilerim</h3>
+                        <div class="bookcase">
+                            <div class="shelf">
+                                <div class="shelf-item group relative" tabindex="0">
+                                    <i class="ph ph-flower-lotus"></i>
+                                    <span>Yoga</span>
+                                    <div class="hobby-tip left-0">Zihnim hızlı çalışırken bedenimi ve nefesimi yavaşlatıp dengeyi bulduğum yer.</div>
+                                </div>
+                                <div class="shelf-item group relative" tabindex="0">
+                                    <i class="ph ph-book-open"></i>
+                                    <span>Kitap</span>
+                                    <div class="hobby-tip left-1/2 -translate-x-1/2">Başka birinin düşüncesine girip kendi düşüncemi yeniden kurduğum sessiz bir yolculuk.</div>
+                                </div>
+                                <div class="shelf-item group relative" tabindex="0">
+                                    <i class="ph ph-magnifying-glass"></i>
+                                    <span>Araştırma</span>
+                                    <div class="hobby-tip right-0">Bir soruyu alıp cevabı bulana kadar, bazen de yeni sorular bulana kadar peşinden gitmek.</div>
+                                </div>
+                            </div>
+                            <div class="shelf">
+                                <div class="shelf-item group relative" tabindex="0">
+                                    <i class="ph ph-atom"></i>
+                                    <span>Bilim</span>
+                                    <div class="hobby-tip left-0">Evrenin ve zihnin kurallarını anlamaya çalışırken en çok eğlendiğim alan.</div>
+                                </div>
+                                <div class="shelf-item group relative" tabindex="0">
+                                    <i class="ph ph-robot"></i>
+                                    <span>Kod &amp; AI</span>
+                                    <div class="hobby-tip left-1/2 -translate-x-1/2">Fikirleri çalışan şeylere, makinelerin nasıl öğrendiğini de somut deneylere dönüştürdüğüm atölyem.</div>
+                                </div>
+                                <div class="shelf-item group relative" tabindex="0">
+                                    <i class="ph ph-cpu"></i>
+                                    <span>Teknoloji</span>
+                                    <div class="hobby-tip right-0">Yeni araçları kurcalayıp bugünün neyi mümkün kıldığını, yarının neyi kıracağını izlemek.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- SAĞ SÜTUN -->
+                <div class="flex flex-col space-y-6">
+                    <!-- Şu An -->
+                    <div>
+                        <h3 class="serif text-lg mb-2 text-white">[ Ş U &nbsp; A N ]</h3>
+                        <div class="space-y-3">
+                            <div class="paper-card p-3 flex items-center gap-3 shadow-md text-xs">
+                                <i class="ph ph-book-open-text text-xl"></i>
+                                <div><b>Okuyorum:</b> Hayatımızdaki Algoritmalar</div>
+                            </div>
+                            <div class="paper-card p-3 flex items-center gap-3 shadow-md text-xs">
+                                <i class="ph ph-magnifying-glass text-xl"></i>
+                                <div><b>Araştırıyorum:</b> Makine öğrenmesi algoritmaları ve günlük hayattaki yeri</div>
+                            </div>
+                            <div class="paper-card p-3 flex items-center gap-3 shadow-md text-xs">
+                                <i class="ph ph-question text-xl"></i>
+                                <div><b>Merak ediyorum:</b> Kuantum bilgisayarları nasıl çalışır?</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Merak Haritası -->
+                    
+        </section>
+        <!-- GÖRÜNÜM 3: PORTFOLYO -->
+        <section id="view-projects" class="min-h-screen hidden fade-in">
+            <div class="flex flex-col xl:flex-row min-h-screen">
+                <!-- SOL KÜNYE SÜTUNU -->
+                <div class="portfolio-left w-full xl:w-80 p-8 flex flex-col justify-start items-center text-center border-b xl:border-b-0 xl:border-r shrink-0">
+                    <div class="w-full flex flex-col items-center">
+                        <button onclick="switchTab('home')" class="no-print self-start mb-6 text-xs opacity-60 hover:opacity-100 flex items-center gap-1.5 transition-opacity">
+                            <i class="ph ph-arrow-left"></i> Anasayfaya Dön
+                        </button>
+                        <h2 class="serif text-3xl md:text-4xl font-bold text-white tracking-widest uppercase mb-1">GÖVHER ŞEN</h2>
+                        <p class="serif text-sm italic text-amber-500/80 tracking-widest uppercase mb-6">PORTFOLYO</p>
+                        <div class="w-full border-t border-[#3a352d] my-2"></div>
+                        <!-- Hakkımda -->
+                        <div class="terminal w-full border rounded p-4 text-left text-xs shadow-inner mb-4">
+                            <p class="text-amber-600 font-bold mb-2">$ <span class="italic font-normal text-amber-500">Hakkımda</span></p>
+                            <p class="opacity-85 leading-relaxed text-[11px]">
+                                Python ekosisteminde güçlü bir teknik temele sahip Yapay Zekâ Mühendisi. NLP, Makine Öğrenmesi, BERT modelleri ve RAG mimarileri ile gerçek dünya problemlerine araştırmacı ve pratik çözümler üretiyorum.
+                            </p>
+                        </div>
+                        <!-- Gövher ve iletişim bilgileri -->
+                        <div class="mb-4 space-y-2 text-xs">
+                            <h3 class="serif text-2xl font-bold text-white mb-2">Gövher</h3>
+                            <p class="opacity-90 leading-relaxed">Bilgisayar Bilimleri Mezunu ·<br>Yapay Zekâ Mühendisi</p>
+                            <div class="pt-3 space-y-1.5 opacity-85">
+                                <p>İstanbul, Türkiye</p>
+                                <p><a href="mailto:govhernurhidir@gmail.com" class="hover:underline">govhernurhidir@gmail.com</a></p>
+                               
+                                <p><a href="https://github.com/Nur-hidir" target="_blank" class="hover:underline">github.com/Nur-hidir</a></p>
+                                <p><a href="https://linkedin.com/in/govher" target="_blank" class="hover:underline">linkedin.com/in/govher</a></p>
+                            </div>
+                        </div>
+                        <!-- Ataçlı CV Görüntüle Butonu -->
+                         
+                    </div>
+                </div>
+                <!-- SAĞ İÇERİK SÜTUNU -->
+                <div class="portfolio-right paper-texture flex-1 p-6 md:p-12 relative overflow-hidden">
+                    <div class="max-w-4xl space-y-10">
+                        <!-- 1. EĞİTİM -->
+                        <div>
+                            <h3 class="serif text-xl md:text-2xl font-bold uppercase tracking-wider mb-4 border-b border-[#b8a994] pb-1">EĞİTİM (EDUCATION)</h3>
+                            <div class="portfolio-timeline border-l-2 ml-2 pl-6 space-y-2 relative">
+                                <div class="portfolio-dot"></div>
+                                <h4 class="font-bold text-sm">Dokuz Eylül Üniversitesi</h4>
+                                <p class="text-xs opacity-90">Bilgisayar Bilimleri Lisans Bölümü (Bachelor of Science in Computer Science)</p>
+                                <p class="text-xs opacity-80">Mezuniyet: 2022 - 2026</p>
+                                <p class="text-xs opacity-80">Odak Alanları: Yapay Zekâ, Doğal Dil İşleme (NLP), Makine Öğrenmesi ve RAG Mimarileri</p>
+                            </div>
+                        </div>
+                        <!-- 2. SEÇİLMİŞ PROJELER -->
+                        <div>
+                            <h3 class="serif text-xl md:text-2xl font-bold uppercase tracking-wider mb-4 border-b border-[#b8a994] pb-1">SEÇİLMİŞ PROJELER (PROJECTS)</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <!-- Proje Kartı 1 -->
+                                <details class="catalog-card group" open>
+                                    <summary class="list-none cursor-pointer">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <span class="text-[11px] font-bold opacity-70">N°001</span>
+                                            <span class="catalog-stamp">Tamamlandı</span>
+                                        </div>
+                                        <h4 class="font-bold text-sm mb-2 leading-snug">RAG Tabanlı Hukuki Sözleşme Analizi</h4>
+                                        <div class="flex flex-wrap gap-1 mb-3">
+                                            <span class="catalog-pill">Python</span>
+                                            <span class="catalog-pill">RAG</span>
+                                            <span class="catalog-pill">FAISS</span>
+                                            <span class="catalog-pill">Gemini</span>
+                                        </div>
+                                        <div class="text-[11px] font-bold mb-1">Problem ➔ Çözüm ➔ Sonuç</div>
+                                        <p class="text-[11px] opacity-85 leading-relaxed">Türk iş sözleşmesi maddelerini ilgili yasal mevzuatla karşılaştıran RAG uygulaması.</p>
+                                        <div class="flex justify-end mt-2">
+                                            <i class="ph ph-link text-sm opacity-70 group-hover:opacity-100"></i>
+                                        </div>
+                                    </summary>
+                                    <div class="mt-3 pt-3 border-t border-dashed border-[#b8a994] text-[11px] space-y-1.5 leading-relaxed">
+                                        <p><b>Ne Yaptım:</b> FAISS vektör araması ve Google Gemini kullandım. <i>multilingual-e5-small</i> modelini contrastive learning ile fine-tune ettim.</p>
+                                        <p><b>Sonuç:</b> Recall@5 oranını %62'den %88'e, MRR skorunu 0.562'den 0.799'a yükselttim.</p>
+                                        <p><b>Araçlar:</b> LangChain, Hugging Face, Sentence Transformers, Streamlit.</p>
+                                        <div class="pt-2 flex gap-3 font-bold underline">
+                                            <a href="https://github.com/Nur-hidir/legal-contract-app" target="_blank">GitHub Kodu</a>
+                                            <a href="https://legal-contract-app-sluhkfdvzxl65jzmzqua8v.streamlit.app" target="_blank">Canlı Demo</a>
+                                        </div>
+                                    </div>
+                                </details>
+                                <!-- Proje Kartı 2 -->
+                                <details class="catalog-card group" open>
+                                    <summary class="list-none cursor-pointer">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <span class="text-[11px] font-bold opacity-70">N°002</span>
+                                            <span class="catalog-stamp">Tamamlandı</span>
+                                        </div>
+                                        <h4 class="font-bold text-sm mb-2 leading-snug">Hibrit Kişisel Veri (PII) Maskeleme</h4>
+                                        <div class="flex flex-wrap gap-1 mb-3">
+                                            <span class="catalog-pill">Python</span>
+                                            <span class="catalog-pill">Turkish BERT</span>
+                                            <span class="catalog-pill">NER</span>
+                                            <span class="catalog-pill">OCR</span>
+                                            
+                                        </div>
+                                        <div class="text-[11px] font-bold mb-1">Problem ➔ Çözüm ➔ Sonuç</div>
+                                        <p class="text-[11px] opacity-85 leading-relaxed">Metin, PDF, DOCX ve görsellerdeki kişisel verileri tespit edip anonimleştiren hibrit sistem.</p>
+                                        <div class="flex justify-end mt-2">
+                                            <i class="ph ph-link text-sm opacity-70 group-hover:opacity-100"></i>
+                                        </div>
+                                    </summary>
+                                    <div class="mt-3 pt-3 border-t border-dashed border-[#b8a994] text-[11px] space-y-1.5 leading-relaxed">
+                                        <p><b>Ne Yaptım:</b> Regex kuralları ile Türkçe BERT tabanlı NER modelini birleştirdim. Yanlış pozitifleri azaltmak için Wikipedia API ve görseller için Tesseract OCR entegre ettim.</p>
+                                        <p><b>Sonuç:</b> Dijital PDF'lerde ~%93-94 başarı, OCR tabanlı görsel testlerinde %87.92 recall elde ettim.</p>
+                                        <div class="pt-2 flex gap-3 font-bold underline">
+    <a href="https://github.com/Nur-hidir/pii-maskeleme-projesi" target="_blank">GitHub Kodu</a>
+    <a href="https://pii-maskeleme-projesi-fepk7qha6ug7nk3hydvtwn.streamlit.app/" target="_blank">Canlı Demo</a>
+</div>
+                                    </div>
+                                </details>
+                                <!-- Proje Kartı 3 -->
+                                <details class="catalog-card group" open>
+                                    <summary class="list-none cursor-pointer">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <span class="text-[11px] font-bold opacity-70">N°003</span>
+                                            <span class="catalog-stamp">Tamamlandı</span>
+                                        </div>
+                                        <h4 class="font-bold text-sm mb-2 leading-snug">Kuantum Kriptanaliz Simülasyonu</h4>
+                                        <div class="flex flex-wrap gap-1 mb-3">
+                                            <span class="catalog-pill">Python</span>
+                                            <span class="catalog-pill">Qiskit</span>
+                                            <span class="catalog-pill">Streamlit</span>
+                                        </div>
+                                        <div class="text-[11px] font-bold mb-1">Problem ➔ Çözüm ➔ Sonuç</div>
+                                        <p class="text-[11px] opacity-85 leading-relaxed">Shor ve Grover kuantum algoritmalarının kriptografik güvenlik üzerindeki etkisini analiz eden araç.</p>
+                                        <div class="flex justify-end mt-2">
+                                            <i class="ph ph-link text-sm opacity-70 group-hover:opacity-100"></i>
+                                        </div>
+                                    </summary>
+                                    <div class="mt-3 pt-3 border-t border-dashed border-[#b8a994] text-[11px] space-y-1.5 leading-relaxed">
+                                        <p><b>Ne Yaptım:</b> Qiskit ve Qiskit Aer kullanarak kuantum algoritmalarını modelledim ve şifreleme yöntemleri üzerindeki potansiyel etkilerini görselleştirdim.</p>
+                                        <p><b>Araçlar:</b> Python, Qiskit, NumPy, Matplotlib, Streamlit.</p>
+                                        <div class="pt-2 flex gap-3 font-bold underline">
+                                            <a href="https://github.com/Nur-hidir/kuantum-kripto-simulasyon" target="_blank">GitHub Kodu</a>
+                                            <a href="https://kuantum-kripto-simulasyon-a6pngjzvs8zkej832zninj.streamlit.app" target="_blank">Canlı Demo</a>
+                                        </div>
+                                    </div>
+                                </details>
+                            </div>
+                        </div>
+                        <!-- 3. DENEYİM & ÇALIŞMALAR -->
+                        <div>
+                            <h3 class="serif text-xl md:text-2xl font-bold uppercase tracking-wider mb-4 border-b border-[#b8a994] pb-1">DENEYİM &amp; ÇALIŞMALAR (EXPERIENCE)</h3>
+                            <div class="portfolio-timeline border-l-2 ml-2 pl-6 space-y-2 relative">
+                                <div class="portfolio-dot"></div>
+                                <h4 class="font-bold text-sm">IT Stajyeri (IT Intern) · EY (Ernst &amp; Young)</h4>
+                                <p class="text-xs opacity-75">Temmuz 2026 - Ağustos 2026</p>
+                                <ul class="text-xs opacity-90 list-disc pl-4 space-y-1 leading-relaxed">
+                                    <li>Son kullanıcılara 1. ve 2. seviye teknik destek sağladım; donanım, yazılım ve ağ sorunlarını teşhis edip çözdüm.</li>
+                                    <li>Kurumsal cihazlar için işletim sistemi kurulumu, formatlama, kullanıcı ortamı hazırlama ve sıfırlama süreçlerini yürüttüm.</li>
+                                    <li>Kurumsal güvenlik ve BT politikalarına uygun olarak kullanıcı erişimlerini, hesapları ve sistem yapılandırmalarını yönettim.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- 4. YETENEKLER -->
+                        <div>
+                            <h3 class="serif text-xl md:text-2xl font-bold uppercase tracking-wider mb-4 border-b border-[#b8a994] pb-1">YETENEKLER (SKILLS)</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-badge">Python (İleri)</span>
+                                <span class="skill-badge">Makine Öğrenmesi</span>
+                                <span class="skill-badge">Derin Öğrenme</span>
+                                <span class="skill-badge">NLP &amp; NER</span>
+                                <span class="skill-badge">Generative AI &amp; LLMs</span>
+                                <span class="skill-badge">RAG Mimarisi</span>
+                                <span class="skill-badge">LLM Guardrails &amp; Güvenlik</span>
+                                <span class="skill-badge">BERT &amp; Fine-Tuning</span>
+                                <span class="skill-badge">PyTorch &amp; Hugging Face</span>
+                                <span class="skill-badge">Azure OpenAI</span>
+                                <span class="skill-badge">Streamlit &amp; FastAPI</span>
+                                <span class="skill-badge">SQL</span>
+                                <span class="skill-badge">C (Orta)</span>
+                                <span class="skill-badge">C#</span>
+                                <span class="skill-badge">Git &amp; GitHub</span>
+                            </div>
+                            <div class="mt-4 text-xs opacity-85">
+                                <b>Diller:</b> Türkçe (Ana dil) · İngilizce (B2 / Upper-Intermediate) · Rusça (B1 / Intermediate) · Fransızca (A2)
+                            </div>
+                        </div>
+                        <!-- 5. SERTİFİKALAR & YAYINLAR -->
+                        <div class="pb-16">
+                            <h3 class="serif text-xl md:text-2xl font-bold uppercase tracking-wider mb-4 border-b border-[#b8a994] pb-1">SERTİFİKALAR &amp; KURSLAR</h3>
+                            <ul class="text-xs space-y-1.5 opacity-90 list-disc pl-5">
+                                <li><b>İleri Seviye Python Kursu</b> — BTK Akademi (2023 - 2024)</li>
+                                <li><b>Yapay Zekâ ve Doğal Dil İşleme (NLP)</b> — BTK Akademi</li>
+                                <li><b>Üretken Yapay Zekâ (Generative AI) &amp; LLM Uygulama Geliştirme</b> — BTK Akademi</li>
+                                <li><b>Machine Learning</b> — Coursera</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Sağ Alt Mühürlü İletişime Geç Butonu -->
+                    <button onclick="switchTab('contact')" class="seal-cta no-print">
+                        <div class="text-left leading-tight">
+                            <span class="block font-bold text-xs tracking-wider">İLETİŞİME GEÇ</span>
+                            <span class="block text-[10px] opacity-75">(GET IN TOUCH)</span>
+                        </div>
+                        <div class="wax-seal">
+                            <i class="ph ph-envelope-simple text-lg"></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- GÖRÜNÜM 4: İLETİŞİM -->
+        <section id="view-contact" class="bg-room min-h-screen p-8 md:p-16 hidden fade-in flex flex-col justify-center items-start">
+            <div class="w-full max-w-md">
+                <!-- Başlık En Üstte ve Solda -->
+                <h2 class="serif text-4xl font-bold text-white mb-3">İletişim</h2>
+                 
+                
+                <!-- Sol Tarafa Hizalı, Dikdörtgen Eskitilmiş Kartlar -->
+                <div class="flex flex-col space-y-6 w-full">
+                    
+                    <!-- GitHub Kartı -->
+                    <a href="https://github.com/Nur-hidir" target="_blank" class="vintage-plaque group">
+                        <span class="plaque-hole tl"></span>
+                        <span class="plaque-hole tr"></span>
+                        <span class="plaque-hole bl"></span>
+                        <span class="plaque-hole br"></span>
+                        
+                        <div class="plaque-content">
+                            <div class="flex items-center justify-center gap-2.5 mb-1.5">
+                                <i class="ph-fill ph-github-logo text-4xl text-[#1c1917]"></i>
+                                <span class="font-sans font-extrabold text-3xl text-[#1c1917] tracking-tight">GitHub</span>
+                            </div>
+                            <div class="flex items-center justify-center gap-1.5 text-[#292524]">
+                                <i class="ph-fill ph-github-logo text-base"></i>
+                                <span class="font-sans text-sm font-semibold group-hover:underline">Nur-hidir</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- LinkedIn Kartı -->
+                    <a href="https://www.linkedin.com/in/g%C3%B6vher-%C5%9Fen-02001941b/" target="_blank" class="vintage-plaque group">
+                        <span class="plaque-hole tl"></span>
+                        <span class="plaque-hole tr"></span>
+                        <span class="plaque-hole bl"></span>
+                        <span class="plaque-hole br"></span>
+                        
+                        <div class="plaque-content">
+                            <div class="flex items-center justify-center mb-1.5">
+                                <span class="font-sans font-extrabold text-3xl text-[#1c1917] tracking-tight">inLinkedIn</span>
+                            </div>
+                            <div class="flex items-center justify-center gap-1.5 text-[#292524]">
+                                <i class="ph-fill ph-linkedin-logo text-base"></i>
+                                <span class="font-sans text-sm font-semibold group-hover:underline">govher</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- E-posta Kartı -->
+                    <a href="mailto:govhernurhidir@gmail.com" class="vintage-plaque group">
+                        <span class="plaque-hole tl"></span>
+                        <span class="plaque-hole tr"></span>
+                        <span class="plaque-hole bl"></span>
+                        <span class="plaque-hole br"></span>
+                        
+                        <div class="plaque-content">
+                            <div class="flex items-center justify-center mb-1.5">
+                                <i class="ph-bold ph-envelope-simple text-4xl text-[#1c1917]"></i>
+                            </div>
+                            <div class="flex items-center justify-center gap-1.5 text-[#292524]">
+                                <i class="ph-fill ph-envelope-simple text-base"></i>
+                                <span class="serif text-sm font-semibold group-hover:underline">govhernurhidir@gmail.com</span>
+                            </div>
+                        </div>
+                    </a>
+                    
+                </div>
+            </div>
+        </section>
+        <!-- GÖRÜNÜM 5: BLOG -->
+                
+        <section id="view-blog" class="paper-texture min-h-screen p-8 md:p-16 hidden fade-in">
+            <header class="paper-line flex justify-between items-end border-b pb-4 mb-12">
+                <h2 class="serif text-4xl font-bold">Bir takım şeyler.</h2>
+                
+            </header>
+
+            <!-- Yazı kartları: data-post değeri, aşağıdaki yazı kaynağının id'si ile aynı olmalı -->
+            <div class="space-y-8 max-w-4xl">
+                <article data-post="post-docker" role="button" tabindex="0" class="post-card group flex flex-col md:flex-row gap-6 p-4 border border-transparent hover:border-[#b8a994] transition-all cursor-pointer">
+                    <div class="paper-line w-full md:w-1/3 h-40 bg-black overflow-hidden relative border">
+                        <img src="https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&q=80&w=600" alt="" class="vintage-img w-full h-full object-cover">
+                    </div>
+                    <div class="w-full md:w-2/3 flex flex-col justify-center focus-text">
+                        <h3 class="serif text-2xl font-bold mb-2 group-hover:underline decoration-2 underline-offset-4">Docker Nedir? Konteynerlerin Dünyası</h3>
+                        <p class="text-sm opacity-90 mb-4 leading-relaxed line-clamp-2">
+                            Programları birer kargo gibi paketlemek ve taşımanın ardındaki sistematiği, uluslararası deniz taşımacılığı örneği üzerinden inceliyorum.
+                        </p>
+                        <div class="flex justify-between items-center text-xs font-bold uppercase tracking-widest">
+                            <span class="opacity-70">24 Ekim 2026</span>
+                            <span class="flex items-center gap-1 group-hover:translate-x-2 transition-transform">Deftere Git <i class="ph ph-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </article>
+
+                <article data-post="post-wsl" role="button" tabindex="0" class="post-card group flex flex-col md:flex-row gap-6 p-4 border border-transparent hover:border-[#b8a994] transition-all cursor-pointer">
+                    <div class="paper-line w-full md:w-1/3 h-40 bg-black overflow-hidden relative border">
+                        <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&q=80&w=600" alt="" class="vintage-img w-full h-full object-cover">
+                    </div>
+                    <div class="w-full md:w-2/3 flex flex-col justify-center focus-text">
+                        <h3 class="serif text-2xl font-bold mb-2 group-hover:underline decoration-2 underline-offset-4">WSL Kılavuzu: Windows'ta Linux Gücü</h3>
+                        <p class="text-sm opacity-90 mb-4 leading-relaxed line-clamp-2">
+                            Windows'u silmeden ve sanal makine hantallığına katlanmadan, doğrudan çekirdek üzerinden Linux terminalini nasıl kullandığımı anlatıyorum.
+                        </p>
+                        <div class="flex justify-between items-center text-xs font-bold uppercase tracking-widest">
+                            <span class="opacity-70">20 Ekim 2026</span>
+                            <span class="flex items-center gap-1 group-hover:translate-x-2 transition-transform">Deftere Git <i class="ph ph-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </article>
+
+                <article data-post="post-kuantum" role="button" tabindex="0" class="post-card group flex flex-col md:flex-row gap-6 p-4 border border-transparent hover:border-[#b8a994] transition-all cursor-pointer">
+                    <div class="paper-line w-full md:w-1/3 h-40 bg-black overflow-hidden relative border">
+                        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=600" alt="" class="vintage-img w-full h-full object-cover">
+                    </div>
+                    <div class="w-full md:w-2/3 flex flex-col justify-center focus-text">
+                        <h3 class="serif text-2xl font-bold mb-2 group-hover:underline decoration-2 underline-offset-4">Kuantum Fiziği ve Rastgelelik Üzerine</h3>
+                        <p class="text-sm opacity-90 mb-4 leading-relaxed line-clamp-2">
+                            Evrenin zar atarak mı işlediğini, yoksa her şeyin belirli bir düzene mi sahip olduğunu düşünüyorum. Fiziğin ve matematiğin sınırlarında dolaşıyorum.
+                        </p>
+                        <div class="flex justify-between items-center text-xs font-bold uppercase tracking-widest">
+                            <span class="opacity-70">15 Eylül 2026</span>
+                            <span class="flex items-center gap-1 group-hover:translate-x-2 transition-transform">Deftere Git <i class="ph ph-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!--
+                YAZI METİNLERİ (ekranda görünmez, kitap sayfalarına buradan okunur)
+                Yeni yazı eklemek için:
+                1) Aşağıdaki bir bloğu kopyala, id'sini değiştir (örn. post-yeni)
+                2) Her <div class="bp"> bir kitap sayfasıdır; kendin sayfalara böl
+                3) Yukarıya, data-post="post-yeni" olan bir kart ekle
+                Metinler örnek amaçlıdır, kendi yazılarınla değiştir.
+            -->
+                        <div id="post-docker" class="post-source" hidden data-title="Docker Nedir? Konteynerlerin Dünyası" data-date="24 Ekim 2026">
+                <div class="bp">
+                    <p>Bir yazılımı kendi bilgisayarında çalıştırmak kolaydır. Zor olan, aynı yazılımın başka bir bilgisayarda da aynı şekilde çalışmasıdır. Bir projede Python’un bir sürümünü, belirli bir kütüphanenin tam bir sürümünü ve birkaç sistem ayarını doğru bir araya getirirsin; her şey çalışır. Sonra projeyi bir arkadaşına gönderirsin ve ekranda hata mesajları belirir.</p>
+                    <p>“Bende çalışıyordu” cümlesi, yazılım dünyasının en bilinen özetidir. Docker tam olarak bu cümleyi ortadan kaldırmak için ortaya çıktı. Fikir şu: uygulamayı, çalışması için gereken her şeyle birlikte tek bir pakete koy ve o paketi nereye götürürsen götür aynı şekilde çalışsın.</p>
+                </div>
+                <div class="bp">
+                    <p>Bu fikri anlamama en çok yardım eden şey deniz taşımacılığı oldu. Konteynerler yaygınlaşmadan önce gemilere yük tek tek yüklenirdi: çuvallar, fıçılar, sandıklar, hepsi farklı boyutta ve farklı özenle taşınması gereken şeyler. Bir limanda bir gemiyi yüklemek günler sürebilirdi.</p>
+                    <p>Sonra standart boyutlu çelik konteyner geldi. İçine ne koyduğun önemli değildi; kutunun ölçüleri herkes için aynıydı. Vinç, kamyon, tren ve gemi, içinde ne olduğunu bilmeden aynı kutuyu taşıyabiliyordu. Liman işçisinin kutunun içini bilmesine gerek kalmadı, kutuyu kaldırmayı bilmesi yeterliydi.</p>
+                    <p>Docker konteyneri de aynı işi yazılım için yapar. Uygulamanı, kullandığı kütüphaneleri, ayar dosyalarını ve çalışması için gereken ortamı tek bir kutuya koyarsın. Bu kutuyu kendi bilgisayarında, arkadaşının bilgisayarında ya da bir sunucuda açtığında aynı şekilde davranır. Yazılımı çalıştıran kişinin içeride ne olduğunu bilmesine gerek yoktur; kutuyu açmayı bilmesi yeterlidir.</p>
+                </div>
+                <div class="bp">
+                    <p>Docker’da iki kavramı ayırmak gerekiyor: imaj ve konteyner. İmaj, kutunun tarifi ve malzeme listesi gibidir; içinde uygulamanın kodu, kütüphaneler ve çalışması için gereken her şey vardır, ama kendi başına çalışmaz. Konteyner ise bu imajdan başlatılmış, çalışan hâlidir. Aynı imajdan istediğin kadar konteyner başlatabilirsin; her biri birbirinden ayrı çalışır.</p>
+                    <p>İmajı tarif eden dosyaya Dockerfile denir. İçinde hangi temel sistemden başlayacağın, hangi kütüphaneleri kuracağın, kodunu nereye kopyalayacağın ve uygulamanın hangi komutla çalışacağı satır satır yazılır. Docker bu dosyayı okuyup imajı adım adım oluşturur ve her adım bir katman olarak saklanır. Bir satırı değiştirdiğinde sadece o noktadan sonrası yeniden oluşturulur, bu da derlemeyi hızlandırır.</p>
+                    <p>Hazır imajları indirmek için de bir yer var: Docker Hub. Python, PostgreSQL ya da Ubuntu gibi yaygın şeylerin hazır imajları orada durur. Sıfırdan başlamak yerine bunlardan birini temel alıp üzerine kendi uygulamanı eklersin.</p>
+                </div>
+                <div class="bp">
+                    <p>Akla gelen ilk soru şu oluyor: bu, sanal makineden farklı mı? Farklı. Sanal makine, kendi işletim sistemini ve onun çekirdeğini de içinde taşır; bu yüzden büyüktür, açılması genellikle dakikalar sürer ve çok bellek ister. Konteyner ise ana bilgisayarın çekirdeğini paylaşır. Linux’un namespace ve cgroups gibi özellikleri sayesinde her konteyner kendi dosyalarını, kendi süreçlerini ve kendi ağ ayarlarını görür, ama aslında hepsi aynı çekirdeğin üzerinde çalışır.</p>
+                    <p>Bu yüzden konteynerler çok hafiftir. Bir konteyner saniyeler içinde açılır ve bir bilgisayarda onlarcası aynı anda çalışabilir. Bunun bir bedeli de var: sanal makineye göre yalıtım daha zayıftır, çünkü çekirdek ortaktır. Güvenlik açısından çok hassas işlerde bunu bilmek gerekiyor.</p>
+                    <p>Windows’ta bu işin bir püf noktası var: konteynerler Linux çekirdeğine ihtiyaç duyduğu için Docker, Windows’ta arka planda küçük bir Linux ortamı kullanır. Güncel sürümlerde bu ortam WSL 2 üzerinden çalışır. Bir önceki yazıda anlattığım WSL’in işe yaradığı yer tam olarak burası.</p>
+                </div>
+                <div class="bp">
+                    <p>Denemek için kurulum bittikten sonra terminale <code>docker run hello-world</code> yazman yeterli. Docker imajı indirir, bir konteyner başlatır ve ekrana küçük bir karşılama mesajı basar. Çalışan konteynerleri görmek için <code>docker ps</code>, kendi Dockerfile’ından imaj oluşturmak için <code>docker build</code> komutu var.</p>
+                    <p>Bilmem gereken bir ayrıntı: bir konteyner silindiğinde içindeki veriler de gider. Kalıcı veri için “volume” denen ayrı bir depolama alanı kullanılıyor. Birden fazla konteyneri birlikte yönetmek için Docker Compose adında bir araç var, o ayrı bir konu.</p>
+                    <p>Yapay zekâ projelerinde de bu, ortamı herkeste aynı tutmak için çok işe yarıyor. Her şeyi bildiğimi iddia etmiyorum; bu defterde anladığım kadarını yazıyorum.</p>
+                </div>
+            </div>
+
+            <div id="post-wsl" class="post-source" hidden data-title="WSL Kılavuzu: Windows'ta Linux Gücü" data-date="20 Ekim 2026">
+                <div class="bp">
+                    <p>WSL, Windows içinde Linux çalıştırmanı sağlar. Bilgisayarı yeniden biçimlendirmen ya da çift sistem kurman gerekmez. Güncel Windows 10 ve Windows 11’de yönetici olarak açtığın bir terminale <code>wsl --install</code> yazman yeterlidir.</p>
+                    <p>Varsayılan olarak Ubuntu kurulur. Bilgisayarı yeniden başlatıp bir kullanıcı adı belirlediğinde terminalin hazırdır.</p>
+                </div>
+                <div class="bp">
+                    <p>Neden işime yarıyor? Yapay zekâ ve veri bilimi araçlarının çoğu Linux üzerinde daha sorunsuz çalışıyor. WSL sayesinde Python ortamlarımı ve komut satırı araçlarımı, Windows’taki diğer işlerimi bozmadan kullanabiliyorum.</p>
+                    <p>WSL 2, gerçek bir Linux çekirdeği kullanır. Docker da bu sayede Windows’ta rahatça çalışır; önceki yazıyla bağlantı tam burada kuruluyor.</p>
+                </div>
+            </div>
+
+            <div id="post-kuantum" class="post-source" hidden data-title="Kuantum Fiziği ve Rastgelelik Üzerine" data-date="15 Eylül 2026">
+                <div class="bp">
+                    <p>Klasik dünyada rastgelelik aslında bilgisizliğin adıdır. Yazı-tura atışını düşün: madeni parayı ve eli yeterince iyi bilsek sonucu önceden hesaplayabiliriz. Zar da öyle.</p>
+                    <p>Kuantum mekaniği ise başka bir şey söylüyor: aynı koşullarda aynı deneyi tekrarlasan bile bir ölçümün sonucunu önceden bilemezsin, yalnızca olasılıklarını hesaplayabilirsin.</p>
+                </div>
+                <div class="bp">
+                    <p>Einstein buna razı olmadı. “Tanrı zar atmaz” sözü bu itirazın özeti olarak anılır. Ona göre kuantum kuramının arkasında henüz bulunmamış bir “gizli değişken” olmalıydı.</p>
+                    <p>Sonraki yıllarda Bell’in eşitsizlikleri ve onları sınayan deneyler, bu fikrin yerel biçimini büyük ölçüde dışladı. Yine de bunun gerçekte ne anlama geldiği, yani Kopenhag, çok dünya ya da Bohm yorumlarından hangisinin doğru olduğu hâlâ tartışılıyor. Ben de bunu tam anladığımı söyleyemem; anladığım kadarını yazıyorum.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+        <!-- ==========================================
+         TAM EKRAN PARŞÖMEN OKUYUCU (ARKA PLAN YOK, TEK PARÇA)
+         ========================================== -->
+        <!-- ==========================================
+         AÇIK KİTAP OKUYUCU (tam ekran, krem fon)
+         ========================================== -->
+    <div id="reader" class="parchment-fullscreen" hidden role="dialog" aria-modal="true" aria-label="Yazı okuyucu">
+
+        <div class="parchment-topbar">
+            <button id="reader-close" class="parchment-back-btn">
+                <i class="ph ph-arrow-left"></i> Deftere Dön
+            </button>
+            <button id="reader-sound" class="parchment-icon-btn" aria-label="Sesi kapat" aria-pressed="true">
+                <i class="ph ph-speaker-high"></i>
+            </button>
+        </div>
+
+        <div class="book-wrap">
+            <button id="reader-prev" class="book-arrow" aria-label="Önceki sayfa"><i class="ph ph-caret-left"></i></button>
+
+            <div id="book" class="book">
+                <div class="book-cover" aria-hidden="true"></div>
+                <div class="book-pages">
+                    <div id="pg-left" class="pg-face pg pg-left"></div>
+                    <div id="pg-right" class="pg-face pg pg-right"></div>
+                    <div class="spine" aria-hidden="true"></div>
+                    <div id="leaf" class="leaf" hidden aria-hidden="true">
+                        <div id="leaf-front" class="pg-face leaf-face leaf-front"></div>
+                        <div id="leaf-back" class="pg-face leaf-face leaf-back"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button id="reader-next" class="book-arrow" aria-label="Sonraki sayfa"><i class="ph ph-caret-right"></i></button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+ 
